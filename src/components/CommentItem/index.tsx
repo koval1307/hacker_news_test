@@ -1,14 +1,15 @@
-import {Text, View} from 'react-native';
-import React from 'react';
-import RenderHTML from 'react-native-render-html';
-import CommentsList from '../CommentsList';
-import {CommentType} from '../../types/news';
-import {styles} from './styles';
+import { Text, View, useWindowDimensions } from "react-native";
+import React from "react";
+import RenderHTML from "react-native-render-html";
+import CommentsList from "../CommentsList";
+import { CommentType } from "../../types/news";
+import { styles } from "./styles";
 
-const CommentItem = ({comment}: {comment: CommentType}) => {
+const CommentItem = ({ comment }: { comment: CommentType }) => {
   const source = {
     html: comment.text,
   };
+  const { width: contentWidth } = useWindowDimensions();
 
   return (
     <View style={styles.container}>
@@ -17,7 +18,7 @@ const CommentItem = ({comment}: {comment: CommentType}) => {
       <RenderHTML
         baseStyle={styles.html}
         key={comment.id}
-        contentWidth={50}
+        contentWidth={contentWidth}
         source={source}
       />
       {comment.kids && (

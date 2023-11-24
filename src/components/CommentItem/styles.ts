@@ -1,10 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
     padding: 8,
     borderLeftWidth: 1,
-    borderLeftColor: '#FF6600',
+    borderLeftColor: "#FF6600",
   },
   time: {
     fontSize: 12,
@@ -16,8 +16,9 @@ export const styles = StyleSheet.create({
     marginBottom: 4,
   },
   html: {
-    color: 'black',
+    color: "black",
     fontSize: 14,
     paddingTop: 2,
+    textDecorationLine: "none",
   },
 });
