@@ -18,5 +18,7 @@ export const usePosts = (page: number, type: string) => {
   return useQuery({
     queryKey: ['posts', page, type],
     queryFn: async () => getPosts(page, type),
+    refetchOnMount : true
+    
   });
 };

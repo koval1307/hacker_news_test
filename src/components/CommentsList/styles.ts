@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   commentsListWrapper: {
-    height: Dimensions.get("screen").height,
+    height: Dimensions.get("screen").height / 10,
     width: Dimensions.get("screen").width,
   },
   text: {
