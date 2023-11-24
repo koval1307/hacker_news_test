@@ -37,15 +37,17 @@ const CommentsList = forwardRef(({ comments }: { comments: number[] }, ref) => {
             <ActivityIndicator />
           </View>
         ) : (
-          <FlashList
-            data={data}
-            estimatedItemSize={100}
-            ItemSeparatorComponent={() => <View style={styles.text} />}
-            renderItem={({ item }: { item: CommentType }) => (
-              <CommentItem comment={item} />
-            )}
-            keyExtractor={(item) => item.id.toString()}
-          />
+          <View style={styles.commentsListWrapper}>
+            <FlashList
+              data={data}
+              estimatedItemSize={200}
+              ItemSeparatorComponent={() => <View style={styles.text} />}
+              renderItem={({ item }: { item: CommentType }) => (
+                <CommentItem comment={item} />
+              )}
+              keyExtractor={(item) => item.id.toString()}
+            />
+          </View>
         )}
       </View>
     </BottomSheet>

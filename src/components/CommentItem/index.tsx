@@ -1,7 +1,6 @@
 import { Text, View, useWindowDimensions } from "react-native";
 import React from "react";
 import RenderHTML from "react-native-render-html";
-import CommentsList from "../CommentsList";
 import { CommentType } from "../../types/news";
 import { styles } from "./styles";
 
@@ -28,7 +27,6 @@ const CommentItem = ({ comment }: { comment: CommentType }) => {
               ? `${comment.kids.length} reply`
               : `${comment.kids.length} replies`}
           </Text>
-          <CommentsList comments={comment.kids} />
         </>
       )}
     </View>

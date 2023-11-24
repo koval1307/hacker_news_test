@@ -1,11 +1,11 @@
-import React, {useRef, useState} from 'react';
-import {Pressable, Text, TouchableOpacity, View} from 'react-native';
-import {FlashList} from '@shopify/flash-list';
-import NewsListItem from '../NewsListItem';
-import {styles} from './styles';
-import BottomSheet from '@gorhom/bottom-sheet';
-import CommentsList from '../CommentsList';
-import IconComment from '../../assets/icons/IconComment';
+import React, { useRef, useState } from "react";
+import { Pressable, Text, TouchableOpacity, View } from "react-native";
+import { FlashList } from "@shopify/flash-list";
+import NewsListItem from "../NewsListItem";
+import { styles } from "./styles";
+import BottomSheet from "@gorhom/bottom-sheet";
+import CommentsList from "../CommentsList";
+import IconComment from "../../assets/icons/IconComment";
 
 const NewsList = ({
   data,
@@ -31,15 +31,16 @@ const NewsList = ({
     if (endPage - startPage + 1 < maxButtonsToShow) {
       startPage = Math.max(1, endPage - maxButtonsToShow + 1);
     }
-    return Array.from({length: endPage - startPage + 1}, (_, i) => (
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => (
       <TouchableOpacity
         key={startPage + i}
         onPress={() => handlePageClick(startPage + i)}
         style={[
           styles.paginationButton,
           startPage + i === page ? styles.activeButton : null,
-        ]}>
-        <Text style={{color: 'white'}}>{startPage + i}</Text>
+        ]}
+      >
+        <Text style={{ color: "white" }}>{startPage + i}</Text>
       </TouchableOpacity>
     ));
   };
@@ -55,8 +56,8 @@ const NewsList = ({
     <View style={styles.container}>
       <FlashList
         data={data}
-        renderItem={({item}) => (
-          <View style={{flex: 1}}>
+        renderItem={({ item }) => (
+          <View style={{ flex: 1 }}>
             <NewsListItem item={item} />
             {item?.kids?.length && (
               <View style={styles.commentsView}>
@@ -68,11 +69,11 @@ const NewsList = ({
             )}
           </View>
         )}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={() => (
-          <View style={{backgroundColor: '#1f2937'}} />
+          <View style={{ backgroundColor: "#1f2937" }} />
         )}
-        estimatedItemSize={100}
+        estimatedItemSize={200}
         refreshing={refreshing}
         onRefresh={onRefresh}
       />
