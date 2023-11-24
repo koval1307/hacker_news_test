@@ -1,42 +1,48 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Poll from '../tabs/Poll';
-import Jobs from '../tabs/Jobs';
-import {TopTabParamList} from '../types/navigation';
-import Top from '../tabs/Top';
-import {TouchableOpacity, Text, View} from 'react-native';
-import {useAuth0} from 'react-native-auth0';
-import {styles} from './styles';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Poll from "../tabs/Poll";
+import Jobs from "../tabs/Jobs";
+import { TopTabParamList } from "../types/navigation";
+import Top from "../tabs/Top";
+import { TouchableOpacity, Text, View } from "react-native";
+import { useAuth0 } from "react-native-auth0";
+import { styles } from "./styles";
+import IconJob from "../assets/icons/IconJob";
+import IconNews from "../assets/icons/IconNews";
+import IconPoll from "../assets/icons/IconPoll";
 
 const Tab = createBottomTabNavigator<TopTabParamList>();
 
 const BottomTabs = () => {
-  const {clearSession, user} = useAuth0();
+  const { clearSession, user } = useAuth0();
 
   const onLogout = async () => {
     try {
       await clearSession();
     } catch (e) {
-      console.log('Log out cancelled');
+      console.log("Log out cancelled");
     }
   };
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: '#000',
+          backgroundColor: "#000",
         },
 
-        tabBarActiveTintColor: '#FF6600',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: "#FF6600",
+        tabBarInactiveTintColor: "gray",
+
         tabBarLabelStyle: {
-          textTransform: 'none',
-          fontWeight: 'bold',
+          textTransform: "none",
+          fontWeight: "bold",
         },
-      }}>
+      }}
+    >
       <Tab.Screen
         options={{
-          title: 'Top',
+          tabBarIcon: ({ focused }) => <IconNews focused={focused} />,
+          title: "Top",
           headerRight: () => (
             <TouchableOpacity onPress={onLogout} style={styles.logoutButton}>
               <Text style={styles.logoutButtonText}>Logout</Text>
@@ -53,14 +59,15 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         options={{
-          title: 'Poll',
+          title: "Poll",
+          tabBarIcon: ({ focused }) => <IconPoll focused={focused} />,
           headerRight: () => (
             <TouchableOpacity onPress={onLogout} style={styles.logoutButton}>
               <Text style={styles.logoutButtonText}>Logout</Text>
             </TouchableOpacity>
           ),
           headerTitle: () => (
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text>{user?.name}</Text>
             </View>
           ),
@@ -70,14 +77,15 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         options={{
-          title: 'Jobs',
+          title: "Jobs",
+          tabBarIcon: ({ focused }) => <IconJob focused={focused} />,
           headerRight: () => (
             <TouchableOpacity onPress={onLogout} style={styles.logoutButton}>
               <Text style={styles.logoutButtonText}>Logout</Text>
             </TouchableOpacity>
           ),
           headerTitle: () => (
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text>{user?.name}</Text>
             </View>
           ),
